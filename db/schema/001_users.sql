@@ -1,0 +1,17 @@
+-- +goose Up
+
+CREATE TABLE users (
+    username VARCHAR(255) PRIMARY KEY,
+    hashed_password VARCHAR(255) NOT NULL,
+    kills INT NOT NULL DEFAULT 0,
+    deaths INT NOT NULL DEFAULT 0,
+    wins INT NOT NULL DEFAULT 0,
+    losses INT NOT NULL DEFAULT 0,
+    draws INT NOT NULL DEFAULT 0,
+    time_alive INT NOT NULL DEFAULT 0,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+);
+
+-- +goose Down
+DROP TABLE users;

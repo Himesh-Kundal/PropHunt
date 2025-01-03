@@ -33,7 +33,7 @@ export function useLeaderboard() {
         setTopPlayer(top)
         setLoading(false)
       } catch (err) {
-        setError('Failed to load leaderboard data')
+        setError("Failed to load leaderboard data. \n Make sure You are connnected to Institute Network.")
         setLoading(false)
       }
     }

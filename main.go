@@ -12,6 +12,7 @@ import (
 	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
+	"github.com/pressly/goose/v3"
 )
 
 type apiConfig struct {
@@ -47,6 +48,13 @@ func main() {
 		log.Fatal("Failed to connect to the database:", err)
 	}
 	fmt.Println("DB connection established")
+
+	if err := goose.Up(conn, "./db/schema"); err != nil {
+		log.Fatal("Failed to apply migrations:", err)
+	}
+	fmt.Println("Database migrations applied successfully")
+
+	
 	apiCfg := apiConfig{
 		DB: db.New(conn),
 		jwtSecretKey: jwtSecretKey,
